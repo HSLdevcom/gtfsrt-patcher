@@ -1,0 +1,18 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "timer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "*/30 * * * * *"
+    },
+    {
+      "name": "blobout",
+      "type": "blob",
+      "direction": "out",
+      "path": "tampere/tripupdate",
+      "connection": "StorageConnectionString"
+    }
+  ]
+}
