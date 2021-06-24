@@ -1,7 +1,21 @@
 # gtfsrt-patcher
 Contains Azure functions related to patching GTFS RT (download from a feed, do edits and upload in blob storage).
 
-To run locally, local.settings.json should be edited to contain the real secrets.
+To run locally, local.settings.json should be edited to contain the real secrets in the following format:
+```
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "AzureWebJobsStorage": "<connection string to storage that function is stored in>",
+    "StorageConnectionString": "<connection string to storage that realtime data should get uploaded to>",
+    "TRE_USER": "<username for tampere realtime>",
+    "TRE_PASSWORD": "<password for tampere realtime>",
+    "LMJ_USER": "<username for lmj realtime>>",
+    "LMJ_PASSWORD": "<password for lmj realtime>"
+  }
+}
+```
 
 ## lmj and tre no_info-to-skipped-patchers
 
