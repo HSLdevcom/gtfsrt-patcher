@@ -1,5 +1,4 @@
 import os
-import sys
 import logging
 import requests
 from google.transit import gtfs_realtime_pb2
@@ -15,7 +14,7 @@ def main(timer: func.TimerRequest, blobout: func.Out[bytes]):
   res = requests.get(url, verify=True, auth=HTTPBasicAuth(user_name, password))
   if res.status_code != 200:
     logging.error(f"----- lmj tripupdate download failed")
-    sys.exit('Download failed')
+    raise Exception("Download Failed")
   feed.ParseFromString(res.content)    
   for entity in feed.entity:
     if entity.HasField('trip_update'):
