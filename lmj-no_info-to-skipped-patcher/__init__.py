@@ -8,7 +8,7 @@ import azure.functions as func
 
 def main(timer: func.TimerRequest, blobout: func.Out[bytes]):
   feed = gtfs_realtime_pb2.FeedMessage()
-  url = 'https://lmj.mattersoft.fi/api/gtfsrealtime/v1.0/feed/tripupdate'
+  url = 'https://nysse.mattersoft.fi/api/gtfsrealtime/v1.0/feed/tripupdate'
   user_name = os.getenv('LMJ_USER')
   password = os.getenv('LMJ_PASSWORD')
   res = requests.get(url, verify=True, auth=HTTPBasicAuth(user_name, password))
