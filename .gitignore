@@ -1,4 +1,6 @@
 .vscode
 .venv
+.python-version
+*~
 __pycache__/
 local.settings.json
