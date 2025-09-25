@@ -1,7 +1,27 @@
 # gtfsrt-patcher
+
 Contains Azure functions related to patching GTFS RT (download from a feed, do edits and upload in blob storage).
 
-To run locally, local.settings.json should be edited to contain the real secrets in the following format:
+## local development setup
+
+For OS X and pyenv:
+
+
+```
+brew tap azure/functions
+brew install azure-functions-core-tools@4
+pyenv install 3.12.11
+pyenv virtualenv 3.12.11 gtfsrt-patcher-3.12.11
+echo "gtfsrt-patcher-3.12.11" > .python-version
+func start
+```
+
+azure-functions-core-tools install can complain about xcode versions, but
+that does not matter because we are using pure python.
+
+func start is slow to start, because it bootstraps the entire azure functions environment. Be patient.
+
+local.settings.json must be edited to contain the real secrets in the following format:
 ```
 {
   "IsEncrypted": false,
@@ -16,6 +36,15 @@ To run locally, local.settings.json should be edited to contain the real secrets
   }
 }
 ```
+
+
+## library version note
+
+protobuf and gtfs-realtime-bindings versions are interdependent in ways
+not described properly in the packages, because gtfs-realtime-bindings
+contains _pb2.py files which must be compatible with the installed
+protobuf version.
+
 
 ## lmj and tre no_info-to-skipped-patchers
 
